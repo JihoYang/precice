@@ -2,7 +2,6 @@ language: cpp
 
 os:
     - linux
-    - osx
 
 compiler:
   - gcc
@@ -40,13 +39,6 @@ env:
       LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LD_LIBRARY_PATH"
       LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LIBRARY_PATH"
       PYTHONPATH="$PETSC_DIR/$PETSC_ARCH/lib:/usr/lib/python2.7:/usr/lib/python2.7/dist-packages:/usr/lib/python2.7/plat-x86_64-linux-gnu"; fi
-    - if [ "$TRAVIS_OS_NAME" = "osx" ] ; then
-      PRECICE_ROOT=:$TRAVIS_BUILD_DIR"
-      LOCAL_INSTALL="/usr/local/Cellar"
-      PETSC_DIR=$LOCAL_INSTALL/petsc/3.9.3
-      CPLUS_INCLUDE_PATH="$PETSC_DIR/include:$PETSC_DIR"
-      LD_LIBRARY_PATH="$PETSC_DIR/lib:$LD_LIBRARY_PATH"
-      LIBRARY_PATH="$PETSC_DIR/lib:$LIBRARY_PATH"; fi
 
   matrix:
     - MPI=on PETSC=on
