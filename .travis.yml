@@ -19,10 +19,10 @@ matrix:
 addons:
   apt:
     sources:
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ; then
+      - if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
         ubuntu-toolchain-r-test; fi
     packages:
-      - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ; then
+      - if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
         g++-6
         libopenmpi-dev
         openmpi-bin
@@ -32,7 +32,7 @@ addons:
 
 env:
   global:
-    - if [[ "$TRAVIS_OS_NAME" == "linux" ]] ; then
+    - if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
       PRECICE_ROOT="$TRAVIS_BUILD_DIR"
       LOCAL_INSTALL="$HOME/local"
       PETSC_ARCH=arch-linux2-c-debug
