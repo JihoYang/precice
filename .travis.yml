@@ -1,3 +1,6 @@
+os:
+  - linux
+
 language: cpp
 dist: trusty
 sudo: false
@@ -7,6 +10,7 @@ compiler:
   - clang
 
 addons:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   apt:
     sources:
       - ubuntu-toolchain-r-test
@@ -17,6 +21,7 @@ addons:
       - python-numpy
       - libblas-dev
       - liblapack-dev
+  fi
 
 env:
   global:
