@@ -1,8 +1,8 @@
-language: cpp
-
 os:
-    - linux
-    - osx
+  - linux
+  #- osx
+
+language: cpp
 
 compiler:
   - gcc
@@ -17,7 +17,7 @@ matrix:
           osx_image: xcode9.1
 
 addons:
-  - if [ "$TRAVIS_OS_NAME = "linux"]; then
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   apt:
     sources:
         ubuntu-toolchain-r-test
