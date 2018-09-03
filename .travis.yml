@@ -2,6 +2,7 @@ language: cpp
 
 os:
     - linux
+    - osx
 
 compiler:
   - gcc
@@ -16,7 +17,7 @@ matrix:
           osx_image: xcode9.1
 
 addons:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
+  - if [ "$TRAVIS_OS_NAME = "linux"]; then
   apt:
     sources:
         ubuntu-toolchain-r-test
@@ -30,7 +31,7 @@ addons:
 
 env:
   global:
-    - if [ "$TRAVIS_OS_NAME" = "linux" ] ; then
+  - if [ "$TRAVIS_OS_NAME = "linux"]; then
       PRECICE_ROOT="$TRAVIS_BUILD_DIR"
       LOCAL_INSTALL="$HOME/local"
       PETSC_ARCH=arch-linux2-c-debug
