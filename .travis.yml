@@ -1,5 +1,6 @@
 os:
   - linux
+  - osx
 
 language: cpp
 dist: trusty
@@ -21,7 +22,6 @@ addons:
       - python-numpy
       - libblas-dev
       - liblapack-dev
-  fi
 
 env:
   - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
@@ -48,6 +48,7 @@ before_install:
   - if [ "$CXX" = "g++" ]; then export CXX="g++-6" && export CC="gcc-6"; fi
   - export OMPI_CXX=$CXX
   - if [ "$MPI" = "on" ]; then export CXX="mpicxx"; fi
+  - if [ "$TRAVIS_OS_NAME" = "osx" ]; brew update; fi
 
 install:
   - $TRAVIS_BUILD_DIR/tools/travis-install-dependencies.sh $LOCAL_INSTALL
