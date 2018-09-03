@@ -24,6 +24,7 @@ addons:
   fi
 
 env:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   global:
     - PRECICE_ROOT="$TRAVIS_BUILD_DIR"
     - LOCAL_INSTALL="$HOME/local"
