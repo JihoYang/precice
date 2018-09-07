@@ -1,46 +1,33 @@
-os:
-  - linux
-  #- osx
-
 language: cpp
+dist: trusty
+sudo: false
 
 compiler:
   - gcc
   - clang
 
-matrix:
-    include:
-        #- os: linux
-          dist: trusty
-          sudo: false
-        #- os: osx
-        #  osx_image: xcode9.1
-
 addons:
-  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
   apt:
     sources:
-        ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-        g++-6
-        libopenmpi-dev
-        openmpi-bin
-        python-numpy
-        libblas-dev
-        liblapack-dev
+      - g++-6
+      - libopenmpi-dev
+      - openmpi-bin
+      - python-numpy
+      - libblas-dev
+      - liblapack-dev
 
 env:
   global:
-  #- if [ "$TRAVIS_OS_NAME = "linux"]; then
-      PRECICE_ROOT="$TRAVIS_BUILD_DIR"
-      LOCAL_INSTALL="$HOME/local"
-      PETSC_ARCH=arch-linux2-c-debug
-      PETSC_DIR=$LOCAL_INSTALL/petsc
-      CPLUS_INCLUDE_PATH="$PETSC_DIR/include:$PETSC_DIR/$PETSC_ARCH/include:$LOCAL_INSTALL/include:$CPLUS_INCLUDE_PATH"
-      LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LD_LIBRARY_PATH"
-      LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LIBRARY_PATH"
-      PYTHONPATH="$PETSC_DIR/$PETSC_ARCH/lib:/usr/lib/python2.7:/usr/lib/python2.7/dist-packages:/usr/lib/python2.7/plat-x86_64-linux-gnu" 
-   # fi
+    - PRECICE_ROOT="$TRAVIS_BUILD_DIR"
+    - LOCAL_INSTALL="$HOME/local"
+    - PETSC_ARCH=arch-linux2-c-debug
+    - PETSC_DIR=$LOCAL_INSTALL/petsc
+    - CPLUS_INCLUDE_PATH="$PETSC_DIR/include:$PETSC_DIR/$PETSC_ARCH/include:$LOCAL_INSTALL/include:$CPLUS_INCLUDE_PATH"
+    - LD_LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LD_LIBRARY_PATH"
+    - LIBRARY_PATH="$PETSC_DIR/$PETSC_ARCH/lib:$LOCAL_INSTALL/lib:$LIBRARY_PATH"
+    - PYTHONPATH="$PETSC_DIR/$PETSC_ARCH/lib:/usr/lib/python2.7:/usr/lib/python2.7/dist-packages:/usr/lib/python2.7/plat-x86_64-linux-gnu"
 
   matrix:
     - MPI=on PETSC=on
